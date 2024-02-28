@@ -7,7 +7,7 @@ Requisitos obrigatórios
 - AngularMaterial para componentes [⇗](https://material.angular.io/)
 - ReactiveForms [⇗](https://angular.io/guide/reactive-forms) 
 - Qualquer framwork css para classes de utilidade: Bootstrap[⇗](https://getbootstrap.com/docs/5.2/utilities/api/), Tailwind[⇗](https://tailwindcss.com/), Bulma[⇗](https://bulma.io/) 
-- Roteamento via AngularRoutar [⇗](https://angular.io/guide/routing-overview)
+- Roteamento via Angular Router [⇗](https://angular.io/guide/routing-overview)
 
 
 **Seria ótimo se ⇓**
