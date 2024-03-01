@@ -41,13 +41,10 @@ export class LoginLayoutComponent implements OnInit {
     let form = this.form?.getRawValue();
 
     if (this._service.login(form.email, form.password)) {
-      // Login bem-sucedido, redirecione para a página desejada
       this._router.navigate(['',])
       this._snackBar.open(`Bem vindo!`, 'Fechar');
       this.isSubmit = false;
     } else {
-      // Login falhou, exiba uma mensagem de erro ou tome a ação adequada
-      console.log('Login falhou');
       this._snackBar.open(`Erro! E-mail ou senha incorretos!`, 'Fechar');
       this.isSubmit = false;
     }

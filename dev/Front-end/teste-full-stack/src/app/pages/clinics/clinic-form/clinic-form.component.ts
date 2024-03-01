@@ -237,8 +237,6 @@ export class ClinicFormComponent {
   }
 
   patchValue(clinic: Clinic) {
-    console.log(clinic);
-
     this.form.patchValue(clinic);
     this.clinic = clinic;
   }

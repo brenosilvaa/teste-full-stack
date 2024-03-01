@@ -36,7 +36,9 @@
 
                         <div class="col-12 col-md-6">
                             <h6><strong>CNPJ</strong></h6>
-                            <p>{{ clinic?.cnpj }}</p>
+                            <p>{{ clinic?.cnpj | slice:0:2 }}.{{ clinic?.cnpj | slice:2:5
+                                }}.{{ clinic?.cnpj | slice:5:8 }}/{{ clinic?.cnpj | slice:8:12 }}-{{ clinic?.cnpj |
+                                slice:12 }}</p>
                         </div>
 
                         <div class="col-12 col-md-6">
