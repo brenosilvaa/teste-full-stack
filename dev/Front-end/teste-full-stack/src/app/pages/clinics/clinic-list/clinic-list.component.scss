@@ -1,0 +1,20 @@
+.no-data-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #000000ee;
+}
+
+.sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    /* Cor de fundo desejada */
+    z-index: 1000;
+    /* Z-index alto para ficar acima do conteúdo rolante */
+}
+
+.xs {
+    font-size: 12px;
+}

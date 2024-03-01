@@ -1,0 +1,112 @@
+<!-- ActionBar -->
+<div class="d-flex justify-content-between mt-3">
+
+    <div class="h4 d-flex align-items-center">
+        {{title}}
+    </div>
+
+    <div>
+        <button mat-raised-button [disabled]="isLoading" color="primary" class="primary me-2"
+            [routerLink]="['/clinics','form']">
+            <i class="far fa-plus me-0 me-md-2"></i><span class="d-none d-md-inline-block"> Adicionar</span>
+        </button>
+
+        <!-- Botão de Logout -->
+        <button mat-button [disabled]="isLoading" (click)="logout()">
+            <i class="fas fa-sign-out-alt me-0 me-md-2"></i><span class="d-none d-md-inline-block">Logout</span>
+        </button>
+    </div>
+</div>
+
+<div style="height: 20vh" *ngIf="isLoading" class="d-flex justify-content-center align-items-center">
+    <mat-spinner diameter="45"></mat-spinner>
+</div>
+
+<div class="no-data-message" *ngIf="!clinics.length  && !isLoading">
+    Nenhuma clínica encontrada.
+</div>
+
+<!-- Table -->
+<div>
+    <div>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="Pesquisar" [formControl]="searchControl">
+            <button mat-icon mat-icon-button *ngIf="searchControl.value" matSuffix aria-label="Clear"
+                (click)="clearSearch()">
+                <i class="fas fa-xmark xs"></i>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8" style="max-height: calc(100dvh - 140px); overflow: auto;">
+
+        <table mat-table [dataSource]="dataSource" matSort class="sticky-header"
+            (matSortChange)="announceSortChange($event)">
+
+            <ng-container matColumnDef="businessName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Razão social</th>
+                <td mat-cell *matCellDef="let clinic"> {{ clinic?.businessName }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tradeName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome fantasia</th>
+                <td mat-cell *matCellDef="let clinic"> {{ clinic?.tradeName }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cnpj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Cnpj</th>
+                <td mat-cell *matCellDef="let clinic">{{ clinic?.cnpj | slice:0:2 }}.{{ clinic?.cnpj | slice:2:5
+                    }}.{{ clinic?.cnpj | slice:5:8 }}/{{ clinic?.cnpj | slice:8:12 }}-{{ clinic?.cnpj | slice:12 }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="region">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Região</th>
+                <td mat-cell *matCellDef="let clinic">{{ clinic?.region }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="inaugurationDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de inauguração</th>
+                <td mat-cell *matCellDef="let clinic">{{ clinic?.inaugurationDate | date: 'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isActive">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ativa</th>
+                <td mat-cell *matCellDef="let clinic">
+                    <i *ngIf="clinic?.isActive" matTooltip="Clinica ativa"
+                        class="fas fa-house-medical-circle-check text-success"></i>
+                    <i *ngIf="!clinic?.isActive" matTooltip="Clinica Desativada"
+                        class="fas fa-house-circle-xmark text-danger"></i>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let clinic">
+                    <div class="d-flex">
+
+                        <!-- View Button -->
+                        <button mat-icon-button color="primary" matTooltip="Visualizar Clinica"
+                            (click)="view(clinic?.id)">
+                            <i class="far fa-eye me-0 me-md-2 fa-xs"></i>
+                        </button>
+
+                        <!-- Edit Button -->
+                        <button mat-icon-button color="accent" matTooltip="Editar Clinica" (click)="select(clinic?.id)">
+                            <i class="far fa-edit me-0 me-md-2 fa-xs"></i>
+                        </button>
+                    </div>
+
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div class="no-data-message" *ngIf="noDataFound && !isLoading"> Nenhuma clínica encontrada.
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

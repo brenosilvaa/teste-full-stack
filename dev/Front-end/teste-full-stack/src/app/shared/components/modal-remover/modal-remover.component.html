@@ -1,0 +1,16 @@
+<div mat-dialog-title class="mb-2">
+    <span class="h5 ">Remover</span>
+
+    <a (click)="cancelar()" align="end" matTooltip="Fechar" [matTooltipPosition]="'after'"
+        class="mat-link text-secondary float-end mt-3">
+        <i class="fas fa-xmark"></i>
+    </a>
+</div>
+
+<mat-dialog-content class="text-center">
+    Você realmente deseja remover <strong>{{data}}</strong>?
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Não</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="text-danger">Sim</button>
+</mat-dialog-actions>

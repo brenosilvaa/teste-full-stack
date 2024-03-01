@@ -1,0 +1,54 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 100vh; margin: 0; padding: 0; overflow-y: auto; background-image: url(./assets/background/login-background.jpg); 
+    background-size: cover; background-position: center center; background-repeat: repeat;">
+    <form [formGroup]="form" class="login-container h-100 d-flex justify-content-center">
+
+        <mat-card class="mat-elevation-z8 m-3" style="background-color: rgba(232, 240, 254);">
+            <div class="row d-flex align-items-end mt-2 mb-3">
+                <div class="col-6 ps-4">
+                    <span class="h3 text-primary" style="white-space: nowrap;">
+                        <i class="fas fa-user"></i>
+                        <span class="text-primary"> Login</span>
+                    </span>
+
+                </div>
+            </div>
+
+            <mat-card-content class="mb-0 mt-3">
+                <div class="row">
+
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput type="email" formControlName="email" appAutoFocus />
+                        <mat-error *ngIf="!form.controls.email.valid">Campo Obrigatório</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12" appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput [type]="isPassword ? 'password' : 'text'" formControlName="password" />
+                        <mat-error *ngIf="!form.controls.password.valid">Campo Obrigatório</mat-error>
+                        <a class="text-dark" matTextSuffix>
+                            <i class="fas fa-eye" *ngIf="isPassword" (click)="showPassword()" matTooltip="Exibir senha"
+                                [matTooltipPosition]="'after'"></i>
+                            <i class="fas fa-eye-slash" *ngIf="!isPassword" (click)="showPassword()"
+                                matTooltip="Esconder senha" [matTooltipPosition]="'after'"></i>
+                        </a>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="d-flex justify-content-end col-12">
+                        <button mat-raised-button type="submit" color="primary" class="btn-on"
+                            [disabled]="form.invalid || isBusy || isSubmit" (click)="onSubmit()">
+                            <div *ngIf="!isSubmit">
+                                <i class="fas fa-right-to-bracket me-2"></i> Entrar
+                            </div>
+                            <div *ngIf="isSubmit" class="d-flex align-items-center">
+                                <mat-spinner diameter="15" class="d-inline-block me-1"></mat-spinner>
+                                &nbsp;Entrando...
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

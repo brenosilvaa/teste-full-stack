@@ -1,0 +1,145 @@
+@use '@angular/material' as mat;
+
+@import "_variables";
+
+/* Fonte */
+@font-face {
+  font-family: $font-family;
+  src: url("/assets/fonts/fonte.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$enable-negative-margins: true;
+
+/* Bootstrap */
+@import "bootstrap";
+
+@include mat.core();
+
+$custom-primary-color: (
+  50: #4572ac,
+  100: #4572ac,
+  200: #4572ac,
+  300: #4572ac,
+  400: #00477D,
+  500: #00477D,
+  600: #00477D,
+  700: #00477D,
+  800: #00214f,
+  900: #00214f,
+  A100: #4572ac,
+  A200: #4572ac,
+  A400: #00477c,
+  A700: #00477c,
+  contrast: (50: #fff,
+    100: #fff,
+    200: #fff,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #fff,
+    A200: #fff,
+    A400: #fff,
+    A700: #fff,
+  ),
+);
+
+$custom-accent-color: (
+  50: #f6b384,
+  100: #f4a36b,
+  200: #f29452,
+  300: #f08539,
+  400: #ee7521,
+  500: #EC6608,
+  600: #d45c07,
+  700: #bd5206,
+  800: #a54706,
+  900: #8e3d05,
+  A100: #763304,
+  A200: #5e2903,
+  A400: #471f02,
+  A700: #2f1402,
+  contrast: (50: #fff,
+    100: #fff,
+    200: #fff,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #fff,
+    A200: #fff,
+    A400: #fff,
+    A700: #fff,
+  ),
+);
+
+$custom-danger-color: (
+  50: $danger,
+  100: $danger,
+  200: $danger,
+  300: $danger,
+  400: $danger,
+  500: $danger,
+  600: $danger,
+  700: $danger,
+  800: $danger,
+  900: $danger,
+  A100: $danger,
+  A200: $danger,
+  A400: $danger,
+  A700: $danger,
+  contrast: (50: #fff,
+    100: #fff,
+    200: #fff,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #fff,
+    A200: #fff,
+    A400: #fff,
+    A700: #fff,
+  ),
+);
+
+$app-primary: mat.define-palette($custom-primary-color, 500);
+$app-danger: mat.define-palette($custom-danger-color, 500, 900, A100);
+$app-accent: mat.define-palette($custom-accent-color, 500, 900, A100);
+
+$app-light-theme: mat.define-light-theme((color: (primary: $app-primary,
+        accent: $app-accent,
+        warn: $app-danger,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+@include mat.all-component-themes($app-light-theme);
+@include mat.form-field-density(-4);
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
+}
+
+.custom-expansion-panel .mat-expansion-panel-body {
+  padding: 0 0 0 0 !important;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  justify-content: center !important;
+}
