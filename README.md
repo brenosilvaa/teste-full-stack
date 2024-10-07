@@ -35,10 +35,3 @@ Credenciais válidas para acessar o sistema.
 - NPM (versão 8 ou superior)
 - PostgreSQL
 
-### Passos para execução
-
-#### Backend
-1. Clone o repositório e navegue até o diretório do backend:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd backend
